@@ -8,4 +8,4 @@
 venv/
 postgres_data/
 pgadmin_data/
-*download/*
+flaskapp/download/
