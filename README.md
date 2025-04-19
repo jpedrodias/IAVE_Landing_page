@@ -34,5 +34,7 @@ docker compose down
 
 ---
 **Avançado:**
-- editar o ficheiro `compose.yml` e remover os serviço `adminer` e `pgadmin` pois não têm qualquer utilidade.
+- editar o ficheiro `compose.yml`:
+    - remover os serviço `adminer` e `pgadmin` pois não têm qualquer utilidade.
+    - alterar `command` para usar `gunicorn` mas só depois do primeiro arranque. No primeiro arranque, deixar em `python`
 - `/views` listará todos os dispositivos que usaram a landing page. E é ainda possível fazer downlaod dessa listagem no formato `.csv` 
