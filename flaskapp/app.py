@@ -109,6 +109,9 @@ def download(filename=None):
                 'browser_version': agent.browser.version_string,
             })
 
+        if not data:
+            return "No records found", 404
+        
         from io import StringIO, BytesIO
         import csv
         output_text  = StringIO()
