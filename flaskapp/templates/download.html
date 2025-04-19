@@ -114,7 +114,10 @@
 				<h1 class="text-primary">Windows</h1>
 				<p><b>Instalação prévia da aplicação</b>:</p>
 				<ul>
-				<li>Fazer download do ficheiro .exe (executável, v0.0.11) a partir do <a class="btn btn-primary" href="/download/Provas+IAVE-0.0.11.exe">site LOCAL</a>.
+				<li>Fazer download do ficheiro .exe (executável) a partir do link
+					{% for ficheiro in ficheiros.get('win', []) %}
+					<a class="btn btn-primary" href="/download/{{ ficheiro }}">{{ ficheiro }}</a>
+					{% endfor %}.
 				<li>Instalar e executar.
 				<//ul>
 
@@ -129,7 +132,10 @@
 				<h1 class="text-primary">macOS</h1>
 				<p><b>Instalação prévia da aplicação</b>:</p>
 				<ul>
-				<li>Fazer download do .dmg (Apple Disk Image, v0.0.11) a partir do <a class="btn btn-primary" href="/download/Provas+IAVE-0.0.11.dmg">site LOCAL</a>.
+				<li>Fazer download do .dmg a partir link 
+					{% for ficheiro in ficheiros.get('macos', []) %}
+					<a class="btn btn-primary" href="/download/{{ ficheiro }}">{{ ficheiro }}</a>
+					{% endfor %}.
 				<li>Instalar e executar.
 				</ul>
 			</div>
@@ -143,7 +149,10 @@
 				<h1 class="text-primary">Linux</h1>
 				<p><b>Instalação prévia da aplicação</b>:</p>
 				<ul>
-				<li>Fazer download do ficheiro .AppImage a partir do <a class="btn btn-primary" href="/download/Provas+IAVE-0.0.11.AppImage">site LOCAL</a>.
+				<li>Fazer download do ficheiro .AppImage a partir do link
+					{% for ficheiro in ficheiros.get('linux', []) %}
+					<a class="btn btn-primary" href="/download/{{ ficheiro }}">{{ ficheiro }}</a>
+					{% endfor %}.
 				<li>Alterar permissões do ficheiro .AppImage para executável e executar.
 				</ul>
 			</div>

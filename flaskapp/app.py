@@ -71,8 +71,8 @@ def homepage():
 def download(filename=None):
     if not filename:
 
-        extensoes = {'win': ['.exe'], 'ios': ['.dmg'], 'linux': ['.AppImage']}
-        ficheiros = {'win': [], 'ios': [], 'linux': []}
+        extensoes = {'win': ['.exe'], 'macos': ['.dmg'], 'linux': ['.AppImage']}
+        ficheiros = {'win': [], 'macos': [], 'linux': []}
 
         for file in os.listdir(app.config['DOWNLOAD_FOLDER']):
             for plataforma in extensoes:
