@@ -71,16 +71,15 @@ def homepage():
 def download(filename=None):
     if not filename:
 
-        ficheiros = {
-            'win': [],
-            'ios': [],
-            'linux': []
-        }
+        extensoes = {'win': ['.exe'], 'ios': ['.dmg'], 'linux': ['.AppImage']}
+        ficheiros = {'win': [], 'ios': [], 'linux': []}
+
         for file in os.listdir(app.config['DOWNLOAD_FOLDER']):
-            for ext in ficheiros.keys():
-                if file.endswith(ext):
-                    ficheiros[ext].append(file)
-                    break
+            for plataforma in extensoes:
+                for ext in extensoes.get(plataforma):
+                    if file.endswith(ext):
+                        ficheiros[plataforma].append(file)
+                        break
         
         return render_template('download.html', ficheiros=ficheiros)
     
