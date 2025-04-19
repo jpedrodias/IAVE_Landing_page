@@ -2,21 +2,27 @@
 IAVE - Landing page para o servidor offline
 
 
-Esta ferramenta serve para facilitar a utilização do servidor offline do IAVE.
-Em vez de fornecer o IP do servidor offline, é fornecido o IP desta landing page. E ao fim de alguns segundos, é redirecionado para o IP do servidor do IAVE.
+Esta ferramenta serve para facilitar a utilização do servidor offline do iave.
+Em vez de fornecer o endereço do servidor offline (ip+porta), é fornecido o IP desta landing page. Ao fim de alguns segundos, é redirecionado para o endereço ip do servidor do iave.
 
-Vantagens:
-- dispensa a introdução da porta (especialmente útil para os 4.º anos);
-- serve uma página de download como alternativa para download dos ficheiros .exe|.dmg|.AppImage pois poderá ser mais rápido que o download do site official.
+Para além de servir de landing page, serve também para download dos ficheiros .exe|.dmg|.AppImage o que poderá ser mais rápido em caso de sobrecarga dos servidores officiais.
 
 
 
-Como correr os serviços usando **docker**.
-1. alterar valor `FLASKAPP_REDIRECT_URL` no ficheiro `.env` para apontar para o servidor offline do IAVE
+Como correr esta app usando **docker**.
+1. alterar valores das variáveis de sistema no ficheiro `.env`:
+ - `FLASKAPP_REDIRECT_URL` - endereço do servidor do iave
+ - `FLASKAPP_TITLE` - título que irá aparecer na página de loading
 
-2. fazer download dos ficheiros do IAVE e colocar na pasta `download`
 
-3. correr o docker container com 
+2. fazer download dos ficheiros executáveis do site official e colocar na pasta `flaskapp/download`
+- `.exe` - para windows;
+- `.dmg` - para macos;
+- `.AppImage` - para linux.
+Esses ficheiros estarão disponíveis em `/download`
+
+
+3. correr o docker container com a instrução 
 ```bash
 docker compose up -d
 ```
@@ -25,3 +31,8 @@ docker compose up -d
 ```bash
 docker compose down
 ```
+
+---
+**Vançado:**
+- editar o ficheiro `compose.yml` e remover os serviço `adminer` e `pgadmin` pois não têm qualquer utilidade.
+- `/views` listará todos os dispositivos que usaram a landing page. E é ainda possível fazer downlaod dessa listagem no formato `.csv` 
