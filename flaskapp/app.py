@@ -70,7 +70,19 @@ def homepage():
 @app.route('/download/<path:filename>')
 def download(filename=None):
     if not filename:
-        return render_template('download.html')
+
+        ficheiros = {
+            'win': [],
+            'ios': [],
+            'linux': []
+        }
+        for file in os.listdir(app.config['DOWNLOAD_FOLDER']):
+            for ext in ficheiros.keys():
+                if file.endswith(ext):
+                    ficheiros[ext].append(file)
+                    break
+        
+        return render_template('download.html', ficheiros=ficheiros)
     
     if filename.endswith('.csv'):
         from user_agents import parse
