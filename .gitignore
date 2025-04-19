@@ -1,0 +1,11 @@
+# lista de ficheiros e pastas a ignorar
+# ficheiros temporários ou secretos
+*.ipynb_checkpoints/    
+*.__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+postgres_data/
+pgadmin_data/
+*download/*
