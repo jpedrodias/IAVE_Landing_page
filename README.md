@@ -33,6 +33,6 @@ docker compose down
 ```
 
 ---
-**Vançado:**
+**Avançado:**
 - editar o ficheiro `compose.yml` e remover os serviço `adminer` e `pgadmin` pois não têm qualquer utilidade.
 - `/views` listará todos os dispositivos que usaram a landing page. E é ainda possível fazer downlaod dessa listagem no formato `.csv` 
