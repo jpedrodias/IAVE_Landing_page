@@ -1,0 +1,182 @@
+<html>
+    <head>
+        <title>Provas IAVE @ Colégio Atlântico</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+		
+		<script>
+			window.onload = function() {
+			  var userAgent = navigator.userAgent;
+			  
+			  if (/android/i.test(userAgent)) {
+				setActiveTab('nav-android-tab');
+			  } else if (/Windows/i.test(userAgent)) {
+				setActiveTab('nav-windows-tab');
+			  } else if (/Linux/i.test(userAgent)) {
+				setActiveTab('nav-linux-tab');
+			  } else if (/Macintosh/i.test(userAgent)) {
+				setActiveTab('nav-macOS-tab');
+			  } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+				setActiveTab('nav-iOS-tab');
+			  } else if (/CrOS/i.test(userAgent)) {
+				setActiveTab('nav-chromeOS-tab');
+			  }
+			}
+
+			function setActiveTab(tabId) {
+			  var tab = document.getElementById(tabId);
+			  var event = new Event('click');
+			  tab.dispatchEvent(event);
+			}
+			
+			function restoreLable(element, text, class1, class2){
+				element.innerHTML = text;
+				element.classList.add(class1);
+				element.classList.remove(class2);
+			}
+			
+			function copy2Clipboard(text, delay, new_lable, class1, class2){
+				navigator.clipboard.writeText(text);
+				let element = document.activeElement
+				let lable = element.innerHTML;
+				element.classList.add(class2);
+				element.classList.remove(class1);
+				
+				setTimeout(restoreLable, delay, element, lable, class1, class2);
+				document.activeElement.innerHTML = new_lable;
+			}
+
+		</script>
+
+    </head>
+    <body>
+
+	<div class="container">
+		<h1>Provas IAVE @ Colégio Atlântico</h1>
+		
+		<nav>
+			<div class="nav nav-tabs" id="nav-tab" role="tablist">
+				<button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-android" type="button" role="tab" aria-controls="nav-android" aria-selected="true">Android</button>
+				<button class="nav-link" id="nav-iOS-tab" data-bs-toggle="tab" data-bs-target="#nav-iOS" type="button" role="tab" aria-controls="nav-iOS" aria-selected="false">iOS</button>
+				<button class="nav-link" id="nav-windows-tab" data-bs-toggle="tab" data-bs-target="#nav-windows" type="button" role="tab" aria-controls="nav-windows" aria-selected="false">Windows</button>
+				<button class="nav-link" id="nav-macOS-tab" data-bs-toggle="tab" data-bs-target="#nav-macOS" type="button" role="tab" aria-controls="nav-macOS" aria-selected="false">macOS</button>
+				<button class="nav-link" id="nav-linux-tab" data-bs-toggle="tab" data-bs-target="#nav-linux" type="button" role="tab" aria-controls="nav-linux" aria-selected="false">Linux</button>
+				<button class="nav-link" id="nav-chromeOS-tab" data-bs-toggle="tab" data-bs-target="#nav-chromeos" type="button" role="tab" aria-controls="nav-chromeos" aria-selected="false">ChromeOS</button>
+			</div>
+		</nav>
+
+		<div class="tab-content" id="nav-tabContent">
+
+			<div class="tab-pane fade show active" 
+				id="nav-android"
+				aria-labelledby="nav-android-tab"
+				role="tabpanel"
+				tabindex="0">
+				<h1 class="text-primary">Android</h1>
+				<p><b>Instalação prévia da aplicação</b>:</p>
+				<ul>
+				<li>Instalar a aplicação directamente da <a class="btn btn-primary"  href="https://play.google.com/store/apps/details?id=pt.intuititvo.mobileApp&hl=pt_PT">Play Store Android</a>.
+				</ul>
+				
+			</div>
+
+			<div class="tab-pane fade" 
+				id="nav-chromeOS" 
+				role="tabpanel" 
+				aria-labelledby="nav-chromeOS-tab" 
+				tabindex="0">
+				<h1 class="text-primary">ChromeOS</h1>
+				<p><b>Instalação prévia da aplicação</b>:</p>
+				<ul>
+				<li>Instalar directamente da <a class="btn btn-primary"  href="https://play.google.com/store/apps/details?id=pt.intuititvo.mobileApp&hl=pt_PT">Play Store Android</a>.
+				</ul>
+			</div>
+			
+			<div class="tab-pane fade" 
+				id="nav-iOS" 
+				role="tabpanel" 
+				aria-labelledby="nav-iOS-tab" 
+				tabindex="0">
+				<h1 class="text-primary">iOS</h1>
+				<p><b>Instalação prévia da aplicação</b>:</p>
+				<ul>
+				<li>Instalar directamente a partir da <a class="btn btn-primary" href="https://apps.apple.com/pt/app/intuitivo/id6449191657">Store Apple</a>.
+				</ul>
+			</div>
+			
+			<div class="tab-pane fade" 
+				id="nav-windows" 
+				role="tabpanel" 
+				aria-labelledby="nav-windows-tab" 
+				tabindex="0">
+
+				<h1 class="text-primary">Windows</h1>
+				<p><b>Instalação prévia da aplicação</b>:</p>
+				<ul>
+				<li>Fazer download do ficheiro .exe (executável, v0.0.11) a partir do <a class="btn btn-primary" href="/download/Provas+IAVE-0.0.11.exe">site LOCAL</a>.
+				<li>Instalar e executar.
+				<//ul>
+
+			</div>
+
+			<div class="tab-pane fade" 
+				id="nav-macOS" 
+				role="tabpanel" 
+				aria-labelledby="nav-macOS-tab" 
+				tabindex="0">
+
+				<h1 class="text-primary">macOS</h1>
+				<p><b>Instalação prévia da aplicação</b>:</p>
+				<ul>
+				<li>Fazer download do .dmg (Apple Disk Image, v0.0.11) a partir do <a class="btn btn-primary" href="/download/Provas+IAVE-0.0.11.dmg">site LOCAL</a>.
+				<li>Instalar e executar.
+				</ul>
+			</div>
+			
+			<div class="tab-pane fade" 
+				id="nav-linux" 
+				role="tabpanel" 
+				aria-labelledby="nav-linux-tab" 
+				tabindex="0">
+
+				<h1 class="text-primary">Linux</h1>
+				<p><b>Instalação prévia da aplicação</b>:</p>
+				<ul>
+				<li>Fazer download do ficheiro .AppImage a partir do <a class="btn btn-primary" href="/download/Provas+IAVE-0.0.11.AppImage">site LOCAL</a>.
+				<li>Alterar permissões do ficheiro .AppImage para executável e executar.
+				</ul>
+			</div>
+			
+		</div>
+		
+		
+		<hr><br>
+		<p><b>Iniciar sessão na aplicação</b>:</p>
+		<ul><li>No dia da realização da prova, será fornecido um "nome de utilizador" e uma "Palavra-passe".</ul>
+		
+		<hr><br>
+		<p><b>Endereço do Servidor</b>:</p>
+		<p>Após iniciar a aplicação, inserir o endereço para as provas de acordo com as instruções fornecidas:
+		<ul>
+		
+		<li>Endereço do Servidor Manual:<b>172.16.2.1</b> <a class="btn btn-primary" href="#" onclick="copy2Clipboard('172.16.2.1', 3000, 'endereço da prova copiado 👍', 'btn-light', 'btn-success')">📝 copiar </a> <span style="color:gray; font-size:0.7em">(Este endereço local está disponível apenas no edifício 3)</span>
+		<br><br><br>
+		
+		
+		<li>Endereço do Servidor Online: <b><i>provas.iave.pt</i></b> <a class="btn btn-light" href="#" onclick="copy2Clipboard('provas.iave.pt', 3000, 'endereço da prova copiado 👍', 'btn-light', 'btn-success')">📝 copiar </a>
+		<br><br><br>
+	
+		</ul>
+		
+		
+		<p><b class="text-danger">NOTAS:</b> 
+		<ul>
+		<li>Aplicações de controlo parental podem impedir a instalação da aplicação. Solicitar desbloqueio ao encarregado de educação antecipadamente.
+		<li>Antes de iniciar a aplicação, verificar se o dispositivo está ligado à Internet (Wireless) e se a aplicação está atualizada.
+		<li>Antes do dia da prova, verificar se existe alguma atualização.
+		</ul>
+	</div>
+	
+</body>
+</html>

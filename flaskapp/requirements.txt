@@ -1,0 +1,10 @@
+Flask
+Flask-SQLAlchemy
+psycopg2
+gunicorn
+zeroconf
+pandas
+openpyxl
+pyyaml
+ua-parser
+user-agents
