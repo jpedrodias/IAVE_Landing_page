@@ -21,6 +21,7 @@ except:
 app.config['REDIRECT_URL'] = os.getenv('FLASKAPP_REDIRECT_URL', 'http://provas.iave.pt')
 app.config['REDIRECT_WAIT'] = os.getenv('FLASKAPP_REDIRECT_WAIT', 10)
 app.config['DOWNLOAD_FOLDER'] = os.getenv('FLASKAPP_DOWNLOAD_FOLDER', 'download')
+app.config['TITLE'] = os.getenv('FLASKAPP_TITLE', 'IAVE Offline')
 
 if app.config['DEBUG']:
     print(app.config)
@@ -62,15 +63,17 @@ def homepage():
         redirect=app.config.get('REDIRECT_URL'),
         wait=app.config.get('REDIRECT_WAIT'),
         ip_address=ip_address,
-        user_agent=user_agent
+        user_agent=user_agent,
+        title=app.config.get('TITLE', ''),
     )
 
 
 @app.route('/download/')
 @app.route('/download/<path:filename>')
 def download(filename=None):
-    if not filename:
 
+
+    if not filename:
         extensoes = {'win': ['.exe'], 'macos': ['.dmg'], 'linux': ['.AppImage']}
         ficheiros = {'win': [], 'macos': [], 'linux': []}
 
@@ -81,7 +84,7 @@ def download(filename=None):
                         ficheiros[plataforma].append(file)
                         break
         
-        return render_template('download.html', ficheiros=ficheiros)
+        return render_template('download.html', ficheiros=ficheiros, title=app.config.get('TITLE', ''))
     
     if filename.endswith('.csv'):
         from user_agents import parse
