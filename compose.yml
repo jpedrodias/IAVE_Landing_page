@@ -1,0 +1,93 @@
+services:
+
+  flaskapp:
+    container_name: ${FLASKAPP_NAME}
+    #command: gunicorn -w 10 -b :5000 app:app
+    #command: ./run.sh ${FLASKAPP_FILE}
+    command: python ./${FLASKAPP_FILE}
+    restart: unless-stopped
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./flaskapp/:/app
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 7000:5000
+      - ${FLASKAPP_PORT}:5000
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - ./.env
+      #- ./.env_flaskapp
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+      TZ: ${TZ}
+    user: "5050:5050"  # Especifica o UID e GID do usuário pgadmin
+    networks:
+      - default
+
+  postgres:
+    restart: always
+    container_name: postgres_container
+    image: postgres:latest
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data
+      - /etc/localtime:/etc/localtime:ro
+    env_file:
+      - ./.env
+      #- ./.env_postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+      TZ: ${TZ}
+    ports:
+      - 5432:5432
+    networks:
+      - default
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h localhost -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8081:8080
+    depends_on:
+      - postgres
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    networks:
+      - default
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    ports:
+      - 8082:80
+    depends_on:
+      - postgres
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - ./pgadmin_data:/var/lib/pgadmin
+
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      TZ: ${TZ}
+    user: "5050:5050"  # Especifica o UID e GID do usuário pgadmin
+    networks:
+      - default
+
+networks:
+  default:
+    name: flaskapps-network
+    #external: true # uncomment this on production
+    driver: bridge
