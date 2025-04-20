@@ -45,11 +45,11 @@ wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v
 
 
 # Etapa 4: Go Live
-Correr o docker container com a instrução 
 
 DRY RUN: verificar se está tudo bem. O primeiro arranque é demorado pois será feito o download do postgres e do python. Uma imagem para correr a aplicação flask será preparada.
 
 **Dry run:**
+Correr o docker container com a instrução 
 ```bash
 docker compose up
 ```
