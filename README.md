@@ -10,25 +10,28 @@ Para além de servir de landing page, serve também para download dos ficheiros 
 
 
 Como correr esta app usando **docker**.
-0. Clonar este ripo
+
+# Etapa 1: Clonar 
+Clonar este repositório e entrar nessa pasta.
 ```bash
 git clone https://github.com/jpedrodias/IAVE_Landing_page.git
 cd IAVE_Landing_page
 ```
 
 
-1. alterar valores das variáveis de sistema no ficheiro `.env`:
+# Etapa 2: Definir variáveis de ambiente 
+Alterar valores das variáveis de ambiente no ficheiro `.env`:
 ```bash
-nano compose.yml
+nano .env
 ```
+
  - `FLASKAPP_REDIRECT_URL` - endereço do servidor do iave
  - `FLASKAPP_TITLE` - título que irá aparecer na página de loading
 
 
-2. fazer download dos ficheiros executáveis do site official e colocar na pasta `flaskapp/download`
-- `.exe` - para windows;
-- `.dmg` - para macos;
-- `.AppImage` - para linux.
+
+# Etapa 3: Download das aplicações oficiais
+Fazer download dos ficheiros executáveis do site official e colocar na pasta `flaskapp/download`:
 
 
 ```bash
@@ -41,34 +44,32 @@ wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v
 ```
 
 
-3. correr o docker container com a instrução 
+# Etapa 4: Go Live
+Correr o docker container com a instrução 
 
-Ensaio 1: verificar se está tudo bem.
-O primeiro arranque é demorado.
+DRY RUN: verificar se está tudo bem. O primeiro arranque é demorado pois será feito o download do postgres e do python. Uma imagem para correr a aplicação flask será preparada.
+
+**Dry run:**
 ```bash
 docker compose up
 ```
 
-Interrumper com ctrl+c e voltar a correr em background
-Ponderar correr usando gunicorn (ver Avançado)
+Depois do primeiro `dry-run`, testar o acesso através do ip da máquina onde é iniciada a aplicação. 
+
+Interrumper com `ctrl+c` e voltar a correr em background
+
+PS: Ponderar correr usando gunicorn (ver Avançado)
 ```bash
 docker compose up -d
 ```
 
 
-4. Se for necessário parar o docker container que esteja a correr em background 
+# Etapa 5: Fecho e limpeza total:
+Se for necessário parar o docker container que esteja a correr em background 
 ```bash
 docker compose down -v
 ```
-
----
-**Avançado:**
-- editar o ficheiro `compose.yml`:
-    - alterar `command` para usar `gunicorn` mas só depois do primeiro arranque. No primeiro arranque, deixar em `python`
-- `/views` listará todos os dispositivos que usaram a landing page. E é ainda possível fazer downlaod dessa listagem no formato `.csv` 
-
-
----
+As seguintes instruções limpam a cache do docker 
 **Limpeza docker**
 ```bash
 df -h
@@ -80,3 +81,15 @@ docker network prune -f
 docker system prune -a --volumes -f
 df -h
 ```
+
+
+
+
+---
+**Avançado:**
+- editar o ficheiro `compose.yml`:
+    - alterar `command` para usar `gunicorn` mas só depois do primeiro arranque. No primeiro arranque, deixar em `python`
+- `/views` listará todos os dispositivos que usaram a landing page. E é ainda possível fazer downlaod dessa listagem no formato `.csv` 
+
+
+---
