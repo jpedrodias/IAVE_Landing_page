@@ -29,7 +29,16 @@ nano compose.yml
 - `.exe` - para windows;
 - `.dmg` - para macos;
 - `.AppImage` - para linux.
-Esses ficheiros estarão disponíveis em `/download`
+
+
+```bash
+wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v0.0.11/Provas+IAVE-0.0.11.exe
+
+wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v0.0.11/Provas+IAVE-0.0.11.dmg
+
+wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v0.0.11/Provas+IAVE-0.0.11.AppImage
+
+```
 
 
 3. correr o docker container com a instrução 
