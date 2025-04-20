@@ -88,9 +88,16 @@ df -h
 
 ---
 **Avançado:**
-- editar o ficheiro `compose.yml`:
-    - alterar `command` para usar `gunicorn` mas só depois do primeiro arranque. No primeiro arranque, deixar em `python`
+
+- editar o ficheiro `docker-compose.yml`:
+  alterar `command` para usar `gunicorn` mas só depois do primeiro arranque. No primeiro arranque, deixar em `python`
+
+
 - `/views` listará todos os dispositivos que usaram a landing page. E é ainda possível fazer downlaod dessa listagem no formato `.csv` 
 
 
+- para correr **com extras** fazer 
+```bash
+docker compose -f docker-compose_with_extras.yml up
+```
 ---

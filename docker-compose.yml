@@ -25,7 +25,7 @@ services:
     environment:
       DATABASE_URL: ${DATABASE_URL}
       TZ: ${TZ}
-    user: "5050:5050"  # Especifica o UID e GID do usuário pgadmin
+      FLASK_ENV: development  # Added environment variable for Flask environment
     networks:
       - default
 
