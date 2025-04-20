@@ -31,10 +31,10 @@ services:
 
   postgres:
     restart: always
-    container_name: postgres_container
+    container_name: postgres_server
     image: postgres:latest
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - ./.env
@@ -53,6 +53,10 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+volumes:
+  postgres_data:
+  # stored in /var/lib/docker/volumes/postgres_data/_data
 
 networks:
   default:
