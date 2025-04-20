@@ -70,6 +70,7 @@ Se for necessário parar o docker container que esteja a correr em background
 docker compose down -v
 ```
 As seguintes instruções limpam a cache do docker 
+
 **Limpeza docker**
 ```bash
 df -h
