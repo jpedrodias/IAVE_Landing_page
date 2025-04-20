@@ -41,6 +41,7 @@ docker compose up
 ```
 
 Interrumper com ctrl+c e voltar a correr em background
+Ponderar correr usando gunicorn (ver Avançado)
 ```bash
 docker compose up -d
 ```
@@ -48,7 +49,7 @@ docker compose up -d
 
 4. Se for necessário parar o docker container que esteja a correr em background 
 ```bash
-docker compose down
+docker compose down -v
 ```
 
 ---
