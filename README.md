@@ -3,13 +3,18 @@ IAVE - Landing page para o servidor offline
 
 
 Esta ferramenta serve para facilitar a utilização do servidor offline do iave.
-Em vez de fornecer o endereço do servidor offline (ip+porta), é fornecido o IP desta landing page. Ao fim de alguns segundos, é redirecionado para o endereço ip do servidor do iave.
 
-Para além de servir de landing page, serve também para download dos ficheiros .exe|.dmg|.AppImage o que poderá ser mais rápido em caso de sobrecarga dos servidores officiais.
+(1)
+Em vez de fornecer o endereço do servidor offline (ip+porta), é fornecido o endereço ip desta landing page (sem ser necessário indicar a parta). 
+É servida uma página que ao fim de alguns segundos, redireciona para o endereço ip+porta do servidor offline do iave.
+
+(2)
+Para além de servir de landing page, serve também para se poder fazer download dos ficheiros .exe|.dmg|.AppImage, o que em caso de sobrecarga dos servidores oficiais do iave,  poderá tornar mais rápida a instalação da aplicação.
 
 
+***
 
-Como correr esta app usando **docker**.
+Como correr esta app usando **docker**?
 
 # Etapa 1: Clonar 
 Clonar este repositório e entrar nessa pasta.
