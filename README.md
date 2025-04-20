@@ -16,7 +16,8 @@ Para além de servir de landing page, serve também para se poder fazer download
 
 Como correr esta app usando **docker**?
 
-# Etapa 1: Clonar 
+
+# Etapa 1: 📂 Clonar 
 Clonar este repositório e entrar nessa pasta.
 ```bash
 git clone https://github.com/jpedrodias/IAVE_Landing_page.git
@@ -24,18 +25,18 @@ cd IAVE_Landing_page
 ```
 
 
-# Etapa 2: Definir variáveis de ambiente 
-Alterar valores das variáveis de ambiente no ficheiro `.env`:
+# Etapa 2: ⚙️ Definir variáveis de ambiente 
+Alterar valores das variáveis de ambiente no ficheiro ⚙️ `.env`:
 ```bash
 nano .env
 ```
 
- - `FLASKAPP_REDIRECT_URL` - endereço do servidor do iave
+ - `FLASKAPP_REDIRECT_URL` - endereço do servidor offline do iave
  - `FLASKAPP_TITLE` - título que irá aparecer na página de loading
 
 
 
-# Etapa 3: Download das aplicações oficiais
+# Etapa 3: ⬇️ Download das aplicações oficiais
 Fazer download dos ficheiros executáveis do site official e colocar na pasta `flaskapp/download`:
 
 
@@ -49,34 +50,42 @@ wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v
 ```
 
 
-# Etapa 4: Go Live
+# Etapa 4: 🚀 Go Live
 
-DRY RUN: verificar se está tudo bem. O primeiro arranque é demorado pois será feito o download do postgres e do python. Uma imagem para correr a aplicação flask será preparada.
+DRY RUN: verificar se está tudo bem. O primeiro arranque é demorado pois será feito o download do postgres e do python. 
+O ficheiro `Dockerfile` contém as instruções para preparar uma imagem para correr a aplicação flask.
+
 
 **Dry run:**
-Correr o docker container com a instrução 
+
+Correr o docker container pela primeira vez com a instrução: 
 ```bash
 docker compose up
 ```
 
-Depois do primeiro `dry-run`, testar o acesso através do ip da máquina onde é iniciada a aplicação. 
 
-Interrumper com `ctrl+c` e voltar a correr em background
 
-PS: Ponderar correr usando gunicorn (ver Avançado)
+Depois do primeiro `dry-run`, testar o acesso através do ip da máquina onde é iniciada a aplicação e verificar se está tudo bem. 
+
+
+Interrumper com `Ctrl+C` e voltar a correr a aplicação mas em background
+
 ```bash
 docker compose up -d
 ```
 
+PS: É possível correr a aplicação em paralelo usando gunicorn (ver **Avançado**)
 
-# Etapa 5: Fecho e limpeza total:
+
+# Etapa 5: 🧹 Fecho e limpeza total:
 Se for necessário parar o docker container que esteja a correr em background 
 ```bash
 docker compose down -v
 ```
-As seguintes instruções limpam a cache do docker 
 
-**Limpeza docker**
+As seguintes instruções limpam a cache do docker:
+
+**⚠️Limpeza docker**
 ```bash
 df -h
 docker stop $(docker ps -aq)
@@ -94,7 +103,7 @@ df -h
 ---
 **Avançado:**
 
-- editar o ficheiro `docker-compose.yml`:
+- 🔧 editar o ficheiro `docker-compose.yml`:
   alterar `command` para usar `gunicorn` mas só depois do primeiro arranque. No primeiro arranque, deixar em `python`
 
 
@@ -108,7 +117,8 @@ docker compose -f docker-compose_with_extras.yml up
 ---
 
 ***
-**updates from git**
+** 🔄  updates from git**
 ```bash
 git pull --autostash
 ```
+
