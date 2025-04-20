@@ -101,3 +101,9 @@ df -h
 docker compose -f docker-compose_with_extras.yml up
 ```
 ---
+
+***
+**updates from git**
+```bash
+git pull --autostash
+```
