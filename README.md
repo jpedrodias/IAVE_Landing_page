@@ -10,7 +10,17 @@ Para além de servir de landing page, serve também para download dos ficheiros 
 
 
 Como correr esta app usando **docker**.
+0. Clonar este ripo
+```bash
+git clone https://github.com/jpedrodias/IAVE_Landing_page.git
+cd IAVE_Landing_page
+```
+
+
 1. alterar valores das variáveis de sistema no ficheiro `.env`:
+```bash
+nano compose.yml
+```
  - `FLASKAPP_REDIRECT_URL` - endereço do servidor do iave
  - `FLASKAPP_TITLE` - título que irá aparecer na página de loading
 
@@ -23,11 +33,20 @@ Esses ficheiros estarão disponíveis em `/download`
 
 
 3. correr o docker container com a instrução 
+
+Ensaio 1: verificar se está tudo bem.
+O primeiro arranque é demorado.
+```bash
+docker compose up
+```
+
+Interrumper com ctrl+c e voltar a correr em background
 ```bash
 docker compose up -d
 ```
 
-4. parar o docker container com 
+
+4. Se for necessário parar o docker container que esteja a correr em background 
 ```bash
 docker compose down
 ```
@@ -35,6 +54,19 @@ docker compose down
 ---
 **Avançado:**
 - editar o ficheiro `compose.yml`:
-    - remover os serviço `adminer` e `pgadmin` pois não têm qualquer utilidade.
     - alterar `command` para usar `gunicorn` mas só depois do primeiro arranque. No primeiro arranque, deixar em `python`
 - `/views` listará todos os dispositivos que usaram a landing page. E é ainda possível fazer downlaod dessa listagem no formato `.csv` 
+
+
+---
+**Limpeza docker**
+```bash
+df -h
+docker stop $(docker ps -aq)
+docker rm $(docker ps -aq)
+docker rmi $(docker images -q) -f
+docker volume rm $(docker volume ls -q)
+docker network prune -f
+docker system prune -a --volumes -f
+df -h
+```
