@@ -15,8 +15,8 @@ Para além de servir de landing page, serve também para se poder fazer download
 **Serviços:**
 - `/views/` listará todos os dispositivos que usaram a landing page
 - `/views/stats/` mostra uma estatistica por sistama operativo 
-- `/download/` - para downlaod das aplicações que estiverem na pasta de `download`
-- `/download/records.csv` - para downlaod dessa listagem completa de acessos no formato `.csv`
+- `/download/` - para download das aplicações que estiverem na pasta de `download`
+- `/download/records.csv` - para download dessa listagem completa de acessos no formato `.csv`
 
 
 ***
