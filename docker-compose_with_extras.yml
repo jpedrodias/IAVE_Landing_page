@@ -1,3 +1,6 @@
+# This is a sample docker-compose file for a Flask application with PostgreSQL database with additional features.
+# Additional Services: Adminer and pgAdmin for database management.
+
 services:
 
   flaskapp:
