@@ -1,95 +1,95 @@
 <!doctype html>
 <html lang="pt">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ title }}</title>
-    <meta http-equiv="refresh" content="{{ wait }}; url={{ redirect }}">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            color: #333;
-        }
-
-        h1 {
-            color: #2c3e50;
-        }
-
-        .container {
-            text-align: center;
-            background: #fff;
-            padding: 20px;
-            border-radius: 30px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .info {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #888;
-        }
-
-        .progress-container {
-            width: 100%;
-            background-color: #aaa;
-            border-radius: 30px;
-            overflow: hidden;
-            margin-top: 20px;
-        }
-
-        .progress-bar {
-            height: 25px;
-            width: 0;
-            background-color: #419bb4;
-            text-align: center;
-            line-height: 25px;
-            color: #ddd;
-            border-radius: 25px;
-        }
-        /* New styles for title */
-        h1 {
-            font-size: 2em;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>{{ title }}</h1>
-        <div class="progress-container">
-            <div class="progress-bar" id="progressBar"></div>
-        </div>
-
-        <div class="info">
-            <!-- Request from: {{ ip_address }} -->
-            <!-- User agent: {{ user_agent }} -->
-        </div>
-    </div>
-
-    <script>
-        var progressBar = document.getElementById('progressBar');
-        var progress = 0;
-        var wait = {{ wait }};
-        var intervalTime = (wait * 1000) / 100; // tempo total de espera em milissegundos dividido por 100 incrementos
-
-        var interval = setInterval(function() {
-            progress += 1;
-            progressBar.style.width = progress + '%';
-            // progressBar.textContent = progress + '%';
-            if (progress >= 100) {
-                //progress = 0;
-                clearInterval(interval);
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>{{ title }}</title>
+        <meta http-equiv="refresh" content="{{ wait }}; url={{ redirect }}">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f9;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+                color: #333;
             }
-        }, intervalTime);
-    </script>
 
-</body>
+            h1 {
+                color: #2c3e50;
+            }
+
+            .container {
+                text-align: center;
+                background: #fff;
+                padding: 20px;
+                border-radius: 30px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .info {
+                margin-top: 20px;
+                font-size: 14px;
+                color: #888;
+            }
+
+            .progress-container {
+                width: 100%;
+                background-color: #aaa;
+                border-radius: 30px;
+                overflow: hidden;
+                margin-top: 20px;
+            }
+
+            .progress-bar {
+                height: 25px;
+                width: 0;
+                background-color: #419bb4;
+                text-align: center;
+                line-height: 25px;
+                color: #ddd;
+                border-radius: 25px;
+            }
+            /* New styles for title */
+            h1 {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>{{ title }}</h1>
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <div class="info">
+                <!-- Request from: {{ ip_address }} -->
+                <!-- User agent: {{ user_agent }} -->
+            </div>
+        </div>
+
+        <script>
+            var progressBar = document.getElementById('progressBar');
+            var progress = 0;
+            var wait = {{ wait }};
+            var intervalTime = (wait * 1000) / 100; // tempo total de espera em milissegundos dividido por 100 incrementos
+
+            var interval = setInterval(function() {
+                progress += 1;
+                progressBar.style.width = progress + '%';
+                // progressBar.textContent = progress + '%';
+                if (progress >= 100) {
+                    //progress = 0;
+                    clearInterval(interval);
+                }
+            }, intervalTime);
+        </script>
+
+    </body>
 </html>
