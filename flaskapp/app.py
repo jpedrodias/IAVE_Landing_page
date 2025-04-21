@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 # IAVE - Landing page (flaskapp).
-import os
-import functools
-import datetime
+import os, functools, datetime
 
 from flask import Flask, request, make_response, render_template, redirect, url_for, session, send_file, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
@@ -127,7 +125,7 @@ def download(filename=None):
         writer = csv.DictWriter(output_text, fieldnames=data[0].keys(), delimiter=';')
         writer.writeheader()
         writer.writerows(data)
-        output_text .seek(0)
+        output_text.seek(0)
         output = BytesIO(output_text.read().encode('utf-8'))
         output.seek(0)
         return send_file(
