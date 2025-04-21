@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# IAVE - Landing page (flaskapp).
 import os
 import functools
 import datetime
@@ -8,6 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 
+# ========================= C O N F I G =========================
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///myapp.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('FLASKAPP_SECRET_KEY', 'mysecret')
@@ -30,16 +33,17 @@ if app.config['DEBUG']:
 db = SQLAlchemy()
 db.init_app(app)
 
-
+# ========================= M O D E L S =========================
 class Record(db.Model):
     __tablename__ = 'records'
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime, nullable=False, default=db.func.now())
     ip_address = db.Column(db.String(45), nullable=False)
     user_agent = db.Column(db.String(256), nullable=False)
-#end class
+#end class Record
 
 
+# ========================= F U N C T I O N S =========================
 def no_cache(view):
     @functools.wraps(view)
     def no_cache_wrapper(*args, **kwargs):
@@ -49,9 +53,10 @@ def no_cache(view):
         response.headers['Expires'] = '0'
         return response
     return no_cache_wrapper
+#end def no_cache
 
 
-
+# ========================= V I E W S =========================
 @app.route('/')
 @no_cache
 def homepage():
@@ -67,12 +72,15 @@ def homepage():
         user_agent=user_agent,
         title=app.config.get('TITLE', ''),
     )
+#end def homepage
 
 
 @app.route('/download/')
 @app.route('/download/<path:filename>')
+@no_cache
 def download(filename=None):
-
+    if not os.path.exists(app.config['DOWNLOAD_FOLDER']):
+        os.makedirs(app.config['DOWNLOAD_FOLDER'])
 
     if not filename:
         extensoes = {'win': ['.exe'], 'macos': ['.dmg'], 'linux': ['.AppImage']}
@@ -130,9 +138,11 @@ def download(filename=None):
         )
 
     return send_from_directory(directory=app.config['DOWNLOAD_FOLDER'], path=filename, as_attachment=True)
+#end def download
 
 
 @app.route('/reset_database', methods=['POST'])
+@no_cache
 def reset_database():
     pin = request.form.get('pin')
     hardcoded_pin = app.config['DB_RESET_PIN']  # PIN hardcoded para confirmação
@@ -148,6 +158,7 @@ def reset_database():
         return "Invalid PIN. Database reset aborted.", 403
 
     return redirect(url_for('view_records'))
+#end def reset_database
 
 
 @app.route('/view/<int:page>')
@@ -170,8 +181,11 @@ def view_records(page=1):
     }
 
     return render_template('view.html', pagination=pagination, records=query, title='Registos')
+#end def view_records
+
 
 @app.route('/view/stats/')
+@no_cache
 def view_records_stats():
     from collections import Counter
     from user_agents import parse
@@ -196,7 +210,6 @@ def view_records_stats():
 
     unique_os_counts = Counter(unique_devices.values())
 
-
     #Preparar os dados para exibição
     total_devices = sum(os_counts.values())
     total_unique_devices = sum(unique_os_counts.values())
@@ -216,6 +229,7 @@ def view_records_stats():
     stats.sort(key=lambda x: x['count'], reverse=True)
 
     return render_template('view_stats.html', title='Estatisticas', stats=stats)
+#end def view_records_stats
 
 
 if __name__ == '__main__':
@@ -226,3 +240,5 @@ if __name__ == '__main__':
     
     print('DEBUG?', app.config.get('DEBUG'))
     app.run(host='0.0.0.0', port=5000, debug=app.config.get('DEBUG', False))
+#end if __name__ == '__main__'
+#end flaskapp/app.py
