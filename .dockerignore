@@ -1,3 +1,5 @@
+# Lista de ficheiros a incluir no contexto de construção do Docker
+
 # Diretório com os ficheiros executátais da aplicação do IAVE
 flaskapp/download
 
