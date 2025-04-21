@@ -115,7 +115,6 @@ df -h
 
 ```yml
     command: gunicorn -w 10 -b :5000 app:app
-    #command: ./run.sh ${FLASKAPP_FILE}
     #command: python ./${FLASKAPP_FILE}
 ```
 
