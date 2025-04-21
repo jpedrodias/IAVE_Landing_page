@@ -12,6 +12,13 @@ Em vez de fornecer o endereço do servidor offline (ip+porta), é fornecido o en
 Para além de servir de landing page, serve também para se poder fazer download dos ficheiros .exe|.dmg|.AppImage, o que em caso de sobrecarga dos servidores oficiais do iave,  poderá tornar mais rápida a instalação da aplicação.
 
 
+**Serviços:**
+- `/views/` listará todos os dispositivos que usaram a landing page
+- `/views/stats/` mostra uma estatistica por sistama operativo 
+- `/download/` - para downlaod das aplicações que estiverem na pasta de `download`
+- `/download/records.csv` - para downlaod dessa listagem completa de acessos no formato `.csv`
+
+
 ***
 
 Como correr esta app usando **docker**?
@@ -106,8 +113,6 @@ df -h
 - 🔧 editar o ficheiro `docker-compose.yml`:
   alterar `command` para usar `gunicorn` mas só depois do primeiro arranque. No primeiro arranque, deixar em `python`
 
-
-- `/views` listará todos os dispositivos que usaram a landing page. E é ainda possível fazer downlaod dessa listagem no formato `.csv` 
 
 
 - para correr **com extras** fazer 
