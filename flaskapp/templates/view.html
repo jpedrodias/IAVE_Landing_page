@@ -1,26 +1,24 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>View Records</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row align-items-start">
-        <div class="col">
-          <h1 class="mt-5">Records</h1>
-        </div>
-        <div class="col text-right">
-          <a href="#" title="Fazer Reset à Base de Dados" class="btn btn-primary mt-5" data-toggle="modal" data-target="#resetModal">☢️</a>
+{% extends "base.html" %}
 
-          <a href="{{ url_for('download', filename='records.csv') }}" class="btn btn-primary mt-5">Download</a> 
+{% block title %}View Records{% endblock %}
+{% block head %} {% endblock %}
+
+{% block body %} 
+
+      
+      <div class="row">
+        <div class="col">
+          <h1 class="mt-5">{{title}}</h1>
         </div>
-      </div>
+
+        <div class="col text-end">
+          <a href="{{ url_for('homepage') }}" class="btn btn-primary mt-5">🏠</a>
+    
+          <a href="{{ url_for('view_records_stats') }}" title="Consultar estatísticas" class="btn btn-primary mt-5">📊</a>
+          <a href="{{ url_for('download', filename='records.csv') }}" class="btn btn-primary mt-5">Download</a>
+          <a href="#" title="Fazer Reset à Base de Dados" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#resetModal">☢️</a>
+        </div>
+      </div> 
 
       <!-- Modal -->
       <div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
@@ -28,9 +26,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="resetModalLabel">☢️ Reset Database</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <p>Are you sure you want to reset the database? This action cannot be undone.</p>
@@ -42,7 +38,7 @@
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
               <button type="submit" form="resetForm" class="btn btn-danger">Reset</button>
             </div>
           </div>
@@ -55,24 +51,30 @@
           <tr>
             <th>ID</th>
             <th>IP Address</th>
-            <th>User Agent</th>
             <th>Timestamp</th>
+            <th>User Agent</th>
           </tr>
         </thead>
         <tbody>
           {% for record in records %}
           <tr>
             <td>{{ record.id }}</td>
-            <td>{{ record.timestamp }}</td>
             <td>{{ record.ip_address }}</td>
+            <td>{{ record.timestamp }}</td>
             <td>{{ record.user_agent }}</td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
+
+      {% if records|length == 0 %}
+        <div class="alert alert-info mt-3" role="alert">
+          No records found.
+        </div>
+      {% endif %}
       <nav aria-label="Page navigation">
         <ul class="pagination">
-          {% if pagination.prev%}
+          {% if pagination.prev %}
             <li class="page-item"><a class="page-link" href="{{ url_for('view_records', page=pagination.prev) }}">Previous</a></li>
           {% endif %}
           <li class="page-item active"><a class="page-link" href="#">{{ pagination.curr }}</a></li>
@@ -82,6 +84,5 @@
         </ul>
         Page {{ pagination.curr }} of {{ pagination.pages }} - {{ pagination.records }} records
       </nav>
-    </div>
-  </body>
-</html>
+
+{% endblock %}

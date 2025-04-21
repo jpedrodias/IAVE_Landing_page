@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}View Records Stats{% endblock %}
+{% block head %} {% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col">
+        <h1 class="mt-5">{{ title }}</h1>
+        </div>
+
+        <div class="col text-end">
+        <a href="{{ url_for('homepage') }}" class="btn btn-primary mt-5">🏠</a>
+
+        <a href="{{ url_for('view_records') }}" title="Consultar estatísticas" class="btn btn-primary mt-5">📊</a>
+        <a href="{{ url_for('download', filename='records.csv') }}" class="btn btn-primary mt-5">Download</a>
+        <a href="#" title="Fazer Reset à Base de Dados" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#resetModal">☢️</a>
+        </div>
+    </div> 
+
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Sistema Operativo</th>
+                <th>Total de Acessos</th>
+                <th>Dispositivos Únicos</th>
+                <th>Percentagem Total</th>
+                <th>Percentagem Única</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stat in stats %}
+            <tr>
+                <td>{{ stat.os }}</td>
+                <td>{{ stat.count }}</td>
+                <td>{{ stat.unique_count }}</td>
+                <td>{{ "%.2f" % stat.percentage }}%</td>
+                <td>{{ "%.2f" % stat.unique_percentage }}%</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,58 +1,55 @@
-<html>
-    <head>
-        <title>Provas IAVE @ Colégio Atlântico</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block head %} 
+
+	<script>
+	window.onload = function() {
+	  var userAgent = navigator.userAgent;
+	  
+	  if (/android/i.test(userAgent)) {
+		setActiveTab('nav-android-tab');
+	  } else if (/Windows/i.test(userAgent)) {
+		setActiveTab('nav-windows-tab');
+	  } else if (/Linux/i.test(userAgent)) {
+		setActiveTab('nav-linux-tab');
+	  } else if (/Macintosh/i.test(userAgent)) {
+		setActiveTab('nav-macOS-tab');
+	  } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
+		setActiveTab('nav-iOS-tab');
+	  } else if (/CrOS/i.test(userAgent)) {
+		setActiveTab('nav-chromeOS-tab');
+	  }
+	}
+
+	function setActiveTab(tabId) {
+	  var tab = document.getElementById(tabId);
+	  var event = new Event('click');
+	  tab.dispatchEvent(event);
+	}
+	
+	function restoreLable(element, text, class1, class2){
+		element.innerHTML = text;
+		element.classList.add(class1);
+		element.classList.remove(class2);
+	}
+	
+	function copy2Clipboard(text, delay, new_lable, class1, class2){
+		navigator.clipboard.writeText(text);
+		let element = document.activeElement
+		let lable = element.innerHTML;
+		element.classList.add(class2);
+		element.classList.remove(class1);
 		
-		<script>
-			window.onload = function() {
-			  var userAgent = navigator.userAgent;
-			  
-			  if (/android/i.test(userAgent)) {
-				setActiveTab('nav-android-tab');
-			  } else if (/Windows/i.test(userAgent)) {
-				setActiveTab('nav-windows-tab');
-			  } else if (/Linux/i.test(userAgent)) {
-				setActiveTab('nav-linux-tab');
-			  } else if (/Macintosh/i.test(userAgent)) {
-				setActiveTab('nav-macOS-tab');
-			  } else if (/iPhone|iPad|iPod/i.test(userAgent)) {
-				setActiveTab('nav-iOS-tab');
-			  } else if (/CrOS/i.test(userAgent)) {
-				setActiveTab('nav-chromeOS-tab');
-			  }
-			}
+		setTimeout(restoreLable, delay, element, lable, class1, class2);
+		document.activeElement.innerHTML = new_lable;
+	}
 
-			function setActiveTab(tabId) {
-			  var tab = document.getElementById(tabId);
-			  var event = new Event('click');
-			  tab.dispatchEvent(event);
-			}
-			
-			function restoreLable(element, text, class1, class2){
-				element.innerHTML = text;
-				element.classList.add(class1);
-				element.classList.remove(class2);
-			}
-			
-			function copy2Clipboard(text, delay, new_lable, class1, class2){
-				navigator.clipboard.writeText(text);
-				let element = document.activeElement
-				let lable = element.innerHTML;
-				element.classList.add(class2);
-				element.classList.remove(class1);
-				
-				setTimeout(restoreLable, delay, element, lable, class1, class2);
-				document.activeElement.innerHTML = new_lable;
-			}
+	</script>
 
-		</script>
+{% endblock %}
 
-    </head>
-    <body>
-
-	<div class="container">
+{% block body %} 
 		<h1>{{ title }}</h1>
 		
 		<nav>
@@ -173,7 +170,8 @@
 		<li>Antes de iniciar a aplicação, verificar se o dispositivo está ligado à Internet (Wireless) e se a aplicação está atualizada.
 		<li>Antes do dia da prova, verificar se existe alguma atualização.
 		</ul>
-	</div>
-	
-</body>
-</html>
+
+	{% endblock %}
+
+	{% block rodape %}
+	{% endblock %}

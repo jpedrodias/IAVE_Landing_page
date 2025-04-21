@@ -22,6 +22,7 @@ app.config['REDIRECT_URL'] = os.getenv('FLASKAPP_REDIRECT_URL', 'http://provas.i
 app.config['REDIRECT_WAIT'] = os.getenv('FLASKAPP_REDIRECT_WAIT', 10)
 app.config['DOWNLOAD_FOLDER'] = os.getenv('FLASKAPP_DOWNLOAD_FOLDER', 'download')
 app.config['TITLE'] = os.getenv('FLASKAPP_TITLE', 'IAVE Offline')
+app.config['DB_RESET_PIN'] = os.getenv('FLASKAPP_DB_RESET_PIN', '1234')
 
 if app.config['DEBUG']:
     print(app.config)
@@ -134,7 +135,7 @@ def download(filename=None):
 @app.route('/reset_database', methods=['POST'])
 def reset_database():
     pin = request.form.get('pin')
-    hardcoded_pin = "1234"  # PIN hardcoded para confirmação
+    hardcoded_pin = app.config['DB_RESET_PIN']  # PIN hardcoded para confirmação
 
     if pin == hardcoded_pin:
         try:
@@ -167,7 +168,55 @@ def view_records(page=1):
         'pages': (total_records // PAGE_SIZE) + 1,
         'records': total_records
     }
-    return render_template('view.html', pagination=pagination, records=query)
+
+    return render_template('view.html', pagination=pagination, records=query, title='Registos')
+
+@app.route('/view/stats/')
+def view_records_stats():
+    from collections import Counter
+    from user_agents import parse
+
+    # Consultar todos os registros
+    query = Record.query.order_by(Record.timestamp.desc()).all()
+
+    # Contar os sistemas operativos
+    os_counts = Counter()
+    for record in query:
+        agent = parse(record.user_agent)
+        os_name = agent.os.family
+        os_counts[os_name] += 1
+
+    # Contar os sistemas operativos (sem duplicados por IP)
+    unique_devices = {}
+    for record in query:
+        agent = parse(record.user_agent)
+        os_name = agent.os.family
+        if record.ip_address not in unique_devices:
+            unique_devices[record.ip_address] = os_name
+
+    unique_os_counts = Counter(unique_devices.values())
+
+
+    #Preparar os dados para exibição
+    total_devices = sum(os_counts.values())
+    total_unique_devices = sum(unique_os_counts.values())
+    
+    stats = [
+        {
+            'os': os_name,
+            'count': count,
+            'unique_count': unique_os_counts.get(os_name, 0),
+            'percentage': (count / total_devices) * 100 if total_devices > 0 else 0,
+            'unique_percentage': (unique_os_counts.get(os_name, 0) / total_unique_devices) * 100 if total_unique_devices > 0 else 0
+        }
+        for os_name, count in os_counts.items()
+    ]
+
+    # Ordenar por número de dispositivos (opcional)
+    stats.sort(key=lambda x: x['count'], reverse=True)
+
+    return render_template('view_stats.html', title='Estatisticas', stats=stats)
+
 
 if __name__ == '__main__':
     with app.app_context():
