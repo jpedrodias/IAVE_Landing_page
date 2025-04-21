@@ -1,5 +1,10 @@
-# lista de ficheiros e pastas a ignorar
+# Lista de ficheiros e pastas a ignorar pelo Git
 # ficheiros temporários ou secretos
+*.env
+*.env_flaskapp
+*.env_postgres
+*.log
+*.sqlite
 *.ipynb_checkpoints/    
 *.__pycache__/
 *.pyc
