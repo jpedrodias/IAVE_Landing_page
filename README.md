@@ -120,6 +120,8 @@ docker compose -f docker-compose_with_extras.yml up
 
 **🔄 updates from git**
 ```bash
+docker compose down
 git pull --autostash
+docker compose up -d
 ```
 
