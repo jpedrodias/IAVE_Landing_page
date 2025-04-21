@@ -113,6 +113,11 @@ df -h
 - 🔧 editar o ficheiro `docker-compose.yml`:
   alterar `command` para usar `gunicorn` mas só depois do primeiro arranque. No primeiro arranque, deixar em `python`
 
+```yml
+    command: gunicorn -w 10 -b :5000 app:app
+    #command: ./run.sh ${FLASKAPP_FILE}
+    #command: python ./${FLASKAPP_FILE}
+```
 
 
 - para correr **com extras** fazer 
