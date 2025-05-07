@@ -94,6 +94,7 @@ As seguintes instruções limpam a cache do docker:
 
 **⚠️Limpeza docker**
 ```bash
+docker compose down
 df -h
 docker stop $(docker ps -aq)
 docker rm $(docker ps -aq)
