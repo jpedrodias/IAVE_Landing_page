@@ -54,6 +54,16 @@ def no_cache(view):
 #end def no_cache
 
 
+def require_login(view):
+    @functools.wraps(view)
+    def require_login_wrapper(*args, **kwargs):
+        if 'logged_in' not in session:
+            return redirect(url_for('login'))
+        return view(*args, **kwargs)
+    return require_login_wrapper
+#end def require_login
+
+
 # ========================= V I E W S =========================
 @app.route('/')
 @no_cache
@@ -72,6 +82,24 @@ def homepage():
     )
 #end def homepage
 
+
+@app.route('/login', methods=['GET', 'POST'])
+@no_cache
+def login():
+    if request.method == 'POST':
+        password = request.form.get('password')
+        if password == app.config['DB_RESET_PIN']:
+            session['logged_in'] = True
+            return redirect(url_for('view_records'))
+        else:
+            return render_template('login.html', error='Invalid password', title=app.config.get('TITLE', ''))
+    return render_template('login.html')
+
+@app.route('/logout')
+@no_cache
+def logout():
+    session.pop('logged_in', None)
+    return redirect(url_for('homepage'))
 
 @app.route('/download/')
 @app.route('/download/<path:filename>')
@@ -141,6 +169,7 @@ def download(filename=None):
 
 @app.route('/reset_database', methods=['POST'])
 @no_cache
+@require_login
 def reset_database():
     pin = request.form.get('pin')
     hardcoded_pin = app.config['DB_RESET_PIN']  # PIN hardcoded para confirmação
@@ -161,6 +190,7 @@ def reset_database():
 
 @app.route('/view/<int:page>')
 @app.route('/view/')
+@require_login
 @no_cache
 def view_records(page=1):
     PAGE_SIZE = 10
@@ -183,6 +213,7 @@ def view_records(page=1):
 
 
 @app.route('/view/stats/')
+@require_login
 @no_cache
 def view_records_stats():
     from collections import Counter
