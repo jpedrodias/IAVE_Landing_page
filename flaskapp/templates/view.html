@@ -13,9 +13,9 @@
 
         <div class="col text-end">
           <a href="{{ url_for('homepage') }}" class="btn btn-primary mt-5">🏠</a>
-    
           <a href="{{ url_for('view_records_stats') }}" title="Consultar estatísticas" class="btn btn-primary mt-5">📊</a>
-          <a href="{{ url_for('download', filename='records.csv') }}" class="btn btn-primary mt-5">Download</a>
+          <a href="{{ url_for('download') }}" class="btn btn-primary mt-5" title="Download Page">⬇️</a>
+          <a href="{{ url_for('download', filename='records.csv') }}" class="btn btn-primary mt-5" title="Download CSV">📥</a>
           <a href="#" title="Fazer Reset à Base de Dados" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#resetModal">☢️</a>
         </div>
       </div> 
