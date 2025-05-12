@@ -5,19 +5,7 @@
 
 {% block body %}
 
-    <div class="row">
-        <div class="col">
-        <h1 class="mt-5">{{ title }}</h1>
-        </div>
 
-        <div class="col text-end">
-            <a href="{{ url_for('homepage') }}" class="btn btn-primary mt-5">🏠</a>
-            <a href="{{ url_for('view_records') }}" title="Consultar registos" class="btn btn-primary mt-5">📊</a>
-            <a href="{{ url_for('download') }}" class="btn btn-primary mt-5" title="Download Page">⬇️</a>
-            <a href="{{ url_for('download', filename='records.csv') }}" class="btn btn-primary mt-5" title="Download CSV">📥</a>
-            <a href="#" title="Fazer Reset à Base de Dados" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#resetModal">☢️</a>
-        </div>
-    </div> 
 
     <table class="table table-striped mt-3">
         <thead>

@@ -95,11 +95,13 @@ def login():
             return render_template('login.html', error='Invalid password', title=app.config.get('TITLE', ''))
     return render_template('login.html')
 
+
 @app.route('/logout')
 @no_cache
 def logout():
     session.pop('logged_in', None)
     return redirect(url_for('homepage'))
+
 
 @app.route('/download/')
 @app.route('/download/<path:filename>')
@@ -119,7 +121,7 @@ def download(filename=None):
                         ficheiros[plataforma].append(file)
                         break
         
-        return render_template('download.html', ficheiros=ficheiros, title=app.config.get('TITLE', ''))
+        return render_template('download.html', ficheiros=ficheiros, title=app.config.get('TITLE', ''), do_not_show_menu=True)
     
     if filename.endswith('.csv'):
         from user_agents import parse

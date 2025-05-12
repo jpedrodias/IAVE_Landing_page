@@ -5,48 +5,6 @@
 
 {% block body %} 
 
-      
-      <div class="row">
-        <div class="col">
-          <h1 class="mt-5">{{title}}</h1>
-        </div>
-
-        <div class="col text-end">
-          <a href="{{ url_for('homepage') }}" class="btn btn-primary mt-5">🏠</a>
-          <a href="{{ url_for('view_records_stats') }}" title="Consultar estatísticas" class="btn btn-primary mt-5">📊</a>
-          <a href="{{ url_for('download') }}" class="btn btn-primary mt-5" title="Download Page">⬇️</a>
-          <a href="{{ url_for('download', filename='records.csv') }}" class="btn btn-primary mt-5" title="Download CSV">📥</a>
-          <a href="#" title="Fazer Reset à Base de Dados" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#resetModal">☢️</a>
-          <a href="{{ url_for('logout') }}" class="btn btn-primary mt-5">🚪</a>
-        </div>
-      </div> 
-
-      <!-- Modal -->
-      <div class="modal fade" id="resetModal" tabindex="-1" role="dialog" aria-labelledby="resetModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="resetModalLabel">☢️ Reset Database</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <p>Are you sure you want to reset the database? This action cannot be undone.</p>
-              <form id="resetForm" method="POST" action="{{ url_for('reset_database') }}">
-                <div class="form-group">
-                  <label for="pinInput">Enter PIN to confirm:</label>
-                  <input type="password" class="form-control" id="pinInput" name="pin" placeholder="Enter PIN" required>
-                </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="submit" form="resetForm" class="btn btn-danger">Reset</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
       <table class="table table-striped mt-3">
         <thead>
           <tr>
