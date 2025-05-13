@@ -48,11 +48,11 @@ Fazer download dos ficheiros executáveis do site official e colocar na pasta `f
 
 
 ```bash
-wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v0.0.11/Provas+IAVE-0.0.11.exe
+wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v0.0.12/Provas+IAVE-0.0.12.exe
 
-wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v0.0.11/Provas+IAVE-0.0.11.dmg
+wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v0.0.12/Provas+IAVE-0.0.12.AppImage
 
-wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v0.0.11/Provas+IAVE-0.0.11.AppImage
+wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v0.0.12/Provas+IAVE-0.0.12.dmg
 
 ```
 
