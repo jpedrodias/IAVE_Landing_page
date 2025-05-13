@@ -28,7 +28,7 @@
                         <a href="{{ url_for('download') }}" class="btn btn-primary mt-5" title="Download Aplicações IAVE">⬇️</a>
                         <a href="{{ url_for('view_records') }}" class="btn btn-primary mt-5" title="Consultar registos">📋</a>
                         <a href="{{ url_for('view_records_stats') }}" class="btn btn-primary mt-5" title="Consultar estatísticas">📊</a>
-                        <a href="{{ url_for('download', filename='records.csv') }}" class="btn btn-primary mt-5" title="Download CSV">📥</a>
+                        <a href="{{ url_for('export', filename='records.csv') }}" class="btn btn-primary mt-5" title="Download CSV">📥</a>
                         <a href="#" class="btn btn-danger mt-5" data-bs-toggle="modal" data-bs-target="#resetModal" title="Fazer Reset à Base de Dados">☢️</a>
                         <a href="{{ url_for('logout') }}" class="btn btn-primary mt-5" title="Logout">🔓</a>
                     </div>

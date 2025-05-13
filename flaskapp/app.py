@@ -94,6 +94,7 @@ def login():
         else:
             return render_template('login.html', error='Invalid password', title=app.config.get('TITLE', ''))
     return render_template('login.html')
+#end def login
 
 
 @app.route('/logout')
@@ -101,6 +102,7 @@ def login():
 def logout():
     session.pop('logged_in', None)
     return redirect(url_for('homepage'))
+#end def logout
 
 
 @app.route('/download/')
@@ -122,7 +124,15 @@ def download(filename=None):
                         break
         
         return render_template('download.html', ficheiros=ficheiros, title=app.config.get('TITLE', ''), do_not_show_menu=True)
-    
+
+    return send_from_directory(directory=app.config['DOWNLOAD_FOLDER'], path=filename, as_attachment=True)
+#end def download
+
+
+@app.route('/export/<path:filename>')
+@no_cache
+@require_login
+def export(filename):
     if filename.endswith('.csv'):
         from user_agents import parse
 
@@ -163,10 +173,9 @@ def download(filename=None):
             mimetype='text/csv',
             as_attachment=True,
             download_name=filename
-        )
-
-    return send_from_directory(directory=app.config['DOWNLOAD_FOLDER'], path=filename, as_attachment=True)
-#end def download
+        )    
+    return redirect(url_for('download'))
+#end def export
 
 
 @app.route('/reset_database', methods=['POST'])
