@@ -107,7 +107,6 @@ df -h
 
 
 
-
 ---
 # Avançado
 **Avançado: gunicorn**
@@ -128,9 +127,9 @@ Para além da aplicação flask e da base de dados postgres, é instalada també
 ```bash
 docker compose -f docker-compose_with_extras.yml up
 ```
----
 
-***
+
+---
 
 **Avançado: 🔄 updates from git**
 ```bash
