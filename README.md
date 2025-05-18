@@ -5,7 +5,7 @@ IAVE - Landing page para o servidor offline
 Esta ferramenta serve para facilitar a utilização do servidor offline do iave.
 
 (1)
-Em vez de fornecer o endereço do servidor offline (ip+porta), é fornecido o endereço ip desta landing page (sem ser necessário indicar a parta). 
+Em vez de fornecer o endereço do servidor offline (ip+porta), é fornecido o endereço ip desta landing page (sem ser necessário indicar a porta). 
 É servida uma página que ao fim de alguns segundos, redireciona para o endereço ip+porta do servidor offline do iave.
 
 (2)
@@ -59,8 +59,8 @@ wget -P flaskapp/download https://assets.iave.pt/production/apps/intuitivo-app/v
 
 # Etapa 4: 🚀 Go Live
 
-DRY RUN: verificar se está tudo bem. O primeiro arranque é demorado pois será feito o download do postgres e do python. 
-O ficheiro `Dockerfile` contém as instruções para preparar uma imagem para correr a aplicação flask.
+DRY RUN: verificar se está tudo bem. O primeiro arranque é demorado pois será feito o download da imagem docker do postgres e do python. 
+O ficheiro `Dockerfile` contém as instruções para preparar uma imagem personalizada para correr a aplicação flask a partir da pasta flaskapp.
 
 
 **Dry run:**
@@ -75,7 +75,7 @@ docker compose up
 Depois do primeiro `dry-run`, testar o acesso através do ip da máquina onde é iniciada a aplicação e verificar se está tudo bem. 
 
 
-Interrumper com `Ctrl+C` e voltar a correr a aplicação mas em background
+Interrumper com `Ctrl+C` e voltar a correr a aplicação mas em `-d` detached mode (em background).
 
 ```bash
 docker compose up -d
@@ -109,10 +109,12 @@ df -h
 
 
 ---
-**Avançado:**
+# Avançado
+**Avançado: gunicorn**
 
 - 🔧 editar o ficheiro `docker-compose.yml`:
-  alterar `command` para usar `gunicorn` mas só depois do primeiro arranque. No primeiro arranque, deixar em `python`
+  alterar `command` para usar `gunicorn` mas só depois do primeiro arranque. 
+  No primeiro arranque, deixar em `python`
 
 ```yml
     command: gunicorn -w 10 -b :5000 app:app
@@ -120,7 +122,9 @@ df -h
 ```
 
 
-- para correr **com extras** fazer 
+- para correr **com extras** fazer
+Para além da aplicação flask e da base de dados postgres, é instalada também pgAdmin, que é uma ferramenta para ligar ao servidor postgres instalado.
+
 ```bash
 docker compose -f docker-compose_with_extras.yml up
 ```
@@ -128,7 +132,7 @@ docker compose -f docker-compose_with_extras.yml up
 
 ***
 
-**🔄 updates from git**
+**Avançado: 🔄 updates from git**
 ```bash
 docker compose down
 git pull --autostash
