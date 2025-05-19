@@ -1,8 +1,6 @@
 # IAVE Landing page
 IAVE - Landing page para o servidor offline
 
-# OLÁ
-
 Esta ferramenta serve para facilitar a utilização do servidor offline do iave.
 
 (1)
