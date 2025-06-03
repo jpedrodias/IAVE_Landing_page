@@ -19,7 +19,7 @@ try:
 except:
     app.config['DEBUG'] = False
 
-app.config['REDIRECT_URL'] = os.getenv('FLASKAPP_REDIRECT_URL', 'http://provas.iave.pt')
+app.config['REDIRECT_URL'] = os.getenv('FLASKAPP_REDIRECT_URL', 'https://provas.iave.pt')
 app.config['REDIRECT_WAIT'] = os.getenv('FLASKAPP_REDIRECT_WAIT', 10)
 app.config['DOWNLOAD_FOLDER'] = os.getenv('FLASKAPP_DOWNLOAD_FOLDER', 'download')
 app.config['TITLE'] = os.getenv('FLASKAPP_TITLE', 'IAVE Offline')
