@@ -29,6 +29,8 @@ cd /root/ova_import
 wget https://assets.iave.pt/production/vm-images/iave-offline-production-v2-1-1.ova
 ```
 
+(30 a 60 segundos)
+
 ---
 
 ## 3️⃣ Extrair o OVA
@@ -144,7 +146,7 @@ qm start 9001
 
 
 O primeiro boot poderá demorar dependendo da velocidade de ligação e do número de cores. 
-Em Summary, poderá monotorizar `Network Traffic`.
+Em Summary, poderá monitorizar `Network Traffic`.
 
 ---
 
