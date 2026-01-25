@@ -66,7 +66,9 @@ Estas definições podem ser alteradas depois da máquina criada.
 - cpu type - Hardware » Processors
 - mac e bridge - Hardware » Network
 
+
 A ponderar alterar `cores` para até 90% dos cores disponíveis. Por exemplo, numa máquina de 10 cores, alterar para 8 ou 9. 
+Consultar o número de cores disponíveis em Node » Summary » CPU usage.
 
 ---
 
@@ -76,6 +78,7 @@ A ponderar alterar `cores` para até 90% dos cores disponíveis. Por exemplo, nu
 ```bash
 qm set 9001 --delete scsi0
 ```
+
 
 ---
 
@@ -139,6 +142,9 @@ Confirmar especialmente:
 qm start 9001
 ```
 
+
+O primeiro boot poderá demorar dependendo da velocidade de ligação e do número de cores. 
+Em Summary, poderá monotorizar `Network Traffic`.
 
 ---
 
