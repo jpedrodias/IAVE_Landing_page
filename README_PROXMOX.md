@@ -17,6 +17,7 @@ Configuração alvo da VM:
 
 
 [![Vídeo DEMO](https://img.youtube.com/vi/c4iY3ATDeH0/0.jpg)](https://www.youtube.com/watch?v=c4iY3ATDeH0)
+
 [Vídeo DEMO](https://youtu.be/c4iY3ATDeH0)
 
 ---
