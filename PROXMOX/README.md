@@ -12,6 +12,8 @@ Configuração alvo da VM:
 * **MAC Address:** `BC:24:11:01:0A:0A`
 * **Start on boot:** ativo, com delay de 1 minuto
 
+
+
 ---
 
 
@@ -174,7 +176,7 @@ Depois de confirmares que a VM arranca corretamente:
 
 ```bash
 cd /root
-rm -rf ova_import
+rm -rf /root/ova_import
 ```
 
 ---
