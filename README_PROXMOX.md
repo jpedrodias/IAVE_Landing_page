@@ -1,4 +1,4 @@
-# Importação de um ficheiro OVA no Proxmox (CLI)
+# Importação do ficheiro OVA do IAVE em Proxmox
 
 Este guia descreve **todo o processo de importação de um OVA no Proxmox exclusivamente pela linha de comandos**, incluindo criação da VM, importação do disco, configuração de boot e limpeza final.
 
@@ -64,7 +64,7 @@ qm create 9001 \
   --net0 virtio=BC:24:11:01:0A:0A,bridge=vmbr0 \
   --scsihw virtio-scsi-pci \
   --onboot 1 \
-  --startup order=1,up=60
+  --startup order=99,up=90
 ```
 
 
