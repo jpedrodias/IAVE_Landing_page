@@ -1,4 +1,6 @@
-# Edifício 1 (on vlan 10)
+# Minhas settings - para os três edifícios
+
+## Edifício 1 (on vlan 10)
 ```bash
 mkdir -p /root/ova_import
 cd /root/ova_import
@@ -34,7 +36,7 @@ qm set 9001 --boot order=scsi0
 qm config 9001
 
 cd /root/
-rm  -r /root/ova_import
+rm -r /root/ova_import
 
 qm start 9001
 ```
@@ -48,7 +50,7 @@ qm stop 9001 --skiplock
 
 
 ***
-# Edifício 2 (on vlan 10)
+## Edifício 2 (on vlan 10)
 ```bash
 mkdir -p /root/ova_import
 cd /root/ova_import
@@ -83,6 +85,9 @@ qm set 9002 --boot order=scsi0
 
 qm config 9002
 
+cd /root/
+rm -r /root/ova_import
+
 qm start 9002
 ```
 
@@ -94,7 +99,7 @@ qm stop 9002 --skiplock
 ***
 
 
-# Edifício 3 (on vlan 10)
+## Edifício 3 (on vlan 10)
 ```bash
 mkdir -p /root/ova_import
 cd /root/ova_import
@@ -121,6 +126,7 @@ qm importdisk 9003 \
   ./iave-offline-production-v2-1-1-disk001.vmdk \
   local \
   --format qcow2
+
 sync
  
 qm set 9003 --scsi0 local:9003/vm-9003-disk-0.qcow2
@@ -128,8 +134,10 @@ qm set 9003 --boot order=scsi0
 
 qm config 9003
 
+cd /root/
+rm -r /root/ova_import
+
 qm start 9003
-rm  -r /root/ova_import
 ```
 
 
@@ -137,3 +145,6 @@ rm  -r /root/ova_import
 ```
 qm stop 9003 --skiplock
 ```
+
+---
+**End of file**
