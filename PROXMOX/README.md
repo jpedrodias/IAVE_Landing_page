@@ -49,7 +49,7 @@ wget https://assets.iave.pt/production/vm-images/iave-offline-production-v2-1-1.
 tar xvf iave-offline-production-v2-1-1.ova
 ```
 
-Após a extração deverão existir ficheiros `.ovf`, `.vmdk` e possivelmente `.mf`.
+Após a extração deverão existir ficheiros `.ovf`, `.vmdk` e `.mf`.
 
 ---
 
@@ -79,7 +79,7 @@ Estas definições podem ser alteradas depois da máquina criada.
 - mac e bridge - Hardware » Network
 
 
-A ponderar alterar `cores` para até 90% dos cores disponíveis. Por exemplo, numa máquina de 10 cores, alterar para 8 ou 9. 
+A ponderar alterar `cores` para até 90% dos cores disponíveis. Por exemplo, numa máquina de 10 cores, alterar para 8 ou 9.
 Consultar o número de cores disponíveis em Node » Summary » CPU usage.
 
 ---
@@ -145,6 +145,8 @@ Confirmar especialmente:
 * `boot: order=scsi0`
 * `onboot: 1`
 * `startup: order=1,up=60`
+
+IMPORTANTE: Verificar as configurações de rede: bridge, macaddress, VLAN Tag, ...
 
 ---
 
