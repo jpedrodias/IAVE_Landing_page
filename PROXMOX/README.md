@@ -84,17 +84,7 @@ Consultar o número de cores disponíveis em Node » Summary » CPU usage.
 
 ---
 
-
-## 5️⃣ Remover disco existente (caso exista)
-
-```bash
-qm set 9001 --delete scsi0
-```
-
-
----
-
-## 6️⃣ Importar o disco VMDK e converter para qcow2
+## 5️⃣ Importar o disco VMDK e converter para qcow2
 
 ```bash
 qm importdisk 9001 \
@@ -114,7 +104,7 @@ PS: Que ficará localmente em `/var/lib/vz/images/9001`
 
 ---
 
-## 7️⃣ Associar o disco importado à VM
+## 6️⃣ Associar o disco importado à VM
 
 ```bash
 qm set 9001 --scsi0 local:9001/vm-9001-disk-0.qcow2
@@ -122,7 +112,7 @@ qm set 9001 --scsi0 local:9001/vm-9001-disk-0.qcow2
 
 ---
 
-## 8️⃣ Definir o disco como primeiro no boot order
+## 7️⃣ Definir o disco como primeiro no boot order
 
 ```bash
 qm set 9001 --boot order=scsi0
@@ -130,7 +120,7 @@ qm set 9001 --boot order=scsi0
 
 ---
 
-## 9️⃣ Confirmar a configuração da VM
+## 8️⃣ Confirmar a configuração da VM
 
 ```bash
 qm config 9001
@@ -150,7 +140,7 @@ IMPORTANTE: Verificar as configurações de rede: bridge, macaddress, VLAN Tag, 
 
 ---
 
-## 🔟 Arrancar a VM
+## 9️⃣ Arrancar a VM
 
 ```bash
 qm start 9001
@@ -159,6 +149,21 @@ qm start 9001
 
 O primeiro boot poderá demorar dependendo da velocidade de ligação e do número de cores. 
 Em Summary, poderá monitorizar `Network Traffic`.
+
+
+---
+## 🔟 Acesso via web ao servidor para sincronização dos exames
+
+Aguardar que o primeiro boot termine e consultar o linha com a informação do endereço ip obtido pela máquina.
+```bash
+udhcpc: lease of 10.0.10.2 obtained from 10.0.10.1, lease time 3600
+```
+
+E aceder a esse endereço no browser adicionando a porta `7000`
+
+```bash
+http://10.0.10.2:7000/
+```
 
 ---
 
