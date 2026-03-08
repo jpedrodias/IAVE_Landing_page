@@ -195,3 +195,45 @@ rm -rf /root/ova_import
 * Todo o processo foi pensado para ser **reprodutível, previsível e 100% CLI**.
 * Ponderar um sistema de backups regulares da VM completa, por exemplo, uma vez por dia às 22h00
 * Ponderar um sistema de backups offsite dos backups criados.
+
+
+## copy & past all
+```bash
+mkdir -p /root/ova_import
+cd /root/ova_import
+
+
+wget https://assets.iave.pt/production/vm-images/iave-offline-production-v2-1-1.ova
+tar xvf iave-offline-production-v2-1-1.ova
+
+
+qm create 9001 \
+  --name iave-offline \
+  --memory 8192 \
+  --cores 4 \
+  --cpu host \
+  --ostype l26 \
+  --bios seabios \
+  --net0 virtio=BC:24:11:01:0A:0A,bridge=vmbr0 \
+  --scsihw virtio-scsi-pci \
+  --onboot 1 \
+  --startup order=99,up=90
+
+
+qm importdisk 9001 \
+  ./iave-offline-production-v2-1-1-disk001.vmdk \
+  local \
+  --format qcow2
+
+
+qm set 9001 --scsi0 local:9001/vm-9001-disk-0.qcow2
+qm set 9001 --boot order=scsi0
+
+qm config 9001
+qm start 9001
+
+
+cd /root
+rm -rf /root/ova_import
+
+```
