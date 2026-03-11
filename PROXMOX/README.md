@@ -10,6 +10,8 @@ Configuração alvo da VM:
 * **OS Type:** Linux
 * **BIOS:** SeaBIOS
 * **MAC Address:** `BC:24:11:01:0A:0A`
+* **Bridge:** vmbr0
+* **VLAN:** 11 - recomendação: "de modo a existir conetividade com a VLAN 3 e VLAN 33"
 * **Start on boot:** ativo, com delay de 1 minuto
 
 
@@ -63,7 +65,7 @@ qm create 9001 \
   --cpu host \
   --ostype l26 \
   --bios seabios \
-  --net0 virtio=BC:24:11:01:0A:0A,bridge=vmbr0 \
+  --net0 virtio=BC:24:11:01:0A:0A,bridge=vmbr0,tag=11 \
   --scsihw virtio-scsi-pci \
   --onboot 1 \
   --startup order=99,up=90
@@ -216,7 +218,7 @@ qm create 9001 \
   --cpu host \
   --ostype l26 \
   --bios seabios \
-  --net0 virtio=BC:24:11:01:0A:0A,bridge=vmbr0 \
+  --net0 virtio=BC:24:11:01:0A:0A,bridge=vmbr0,tag=11 \
   --scsihw virtio-scsi-pci \
   --onboot 1 \
   --startup order=99,up=90
