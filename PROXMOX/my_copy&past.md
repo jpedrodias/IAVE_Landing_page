@@ -158,13 +158,13 @@ wget https://assets.iave.pt/production/vm-images/iave-offline-production-v2-1-1.
 tar xvf iave-offline-production-v2-1-1.ova
 
 qm create 9003 \
-  --name ed3-iave-offline \
+  --name ed3-iave-offline-backup \
   --memory 8192 \
   --cores 20 \
   --cpu host \
   --ostype l26 \
   --bios seabios \
-  --net0 virtio=BC:24:11:03:0A:0A,bridge=vmbr0,tag=10 \
+  --net0 virtio=BC:24:11:03:0A:0B,bridge=vmbr0,tag=10 \
   --scsihw virtio-scsi-pci \
   --onboot 1 \
   --startup order=99,up=90
