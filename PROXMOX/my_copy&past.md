@@ -150,8 +150,8 @@ qm stop 9003 --skiplock
 
 ## Edifício 3 (on vlan 10) - testing machine
 ```bash
-mkdir -p /mnt/pve/local-nvme/ova_import
-cd /mnt/pve/local-nvme/ova_import
+mkdir -p /mnt/pve/local-storage/ova_import
+cd /mnt/pve/local-storage/ova_import
 
 wget https://assets.iave.pt/production/vm-images/iave-offline-production-v2-1-1.ova
 
@@ -173,7 +173,7 @@ sync
 
 qm importdisk 9003 \
   ./iave-offline-production-v2-1-1-disk001.vmdk \
-  local-nvme \
+  local-storage \
   --format qcow2
 
 sync
@@ -183,8 +183,8 @@ qm set 9003 --boot order=scsi0
 
 qm config 9003
 
-cd /mnt/pve/local-nvme
-rm -r /mnt/pve/local-nvme/ova_import
+cd /mnt/pve/local-storage
+rm -r /mnt/pve/local-storage/ova_import
 
 qm start 9003
 cd ~
