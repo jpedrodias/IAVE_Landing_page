@@ -178,7 +178,7 @@ qm importdisk 9003 \
 
 sync
  
-qm set 9003 --scsi0 local-nvme:9003/vm-9003-disk-0.qcow2
+qm set 9003 --scsi0 local-storage:9003/vm-9003-disk-0.qcow2
 qm set 9003 --boot order=scsi0
 
 qm config 9003
