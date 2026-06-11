@@ -16,7 +16,7 @@ qm create 9001 \
   --cpu host \
   --ostype l26 \
   --bios seabios \
-  --net0 virtio=BC:24:11:01:0A:0A,bridge=vmbr1,tag=10 \
+  --net0 virtio=BC:24:11:01:0A:0A,bridge=vmbr1,queues=8,tag=10 \
   --scsihw virtio-scsi-pci \
   --onboot 1 \
   --startup order=99,up=90
@@ -66,7 +66,7 @@ qm create 9002 \
   --cpu host \
   --ostype l26 \
   --bios seabios \
-  --net0 virtio=BC:24:11:02:0A:0A,bridge=vmbr1,tag=10 \
+  --net0 virtio=BC:24:11:02:0A:0A,bridge=vmbr1,queues=8,tag=10 \
   --scsihw virtio-scsi-pci \
   --onboot 1 \
   --startup order=99,up=90
@@ -115,7 +115,7 @@ qm create 9003 \
   --cpu host \
   --ostype l26 \
   --bios seabios \
-  --net0 virtio=BC:24:11:03:0A:0A,bridge=vmbr1,tag=10 \
+  --net0 virtio=BC:24:11:03:0A:0A,bridge=vmbr1,queues=8,tag=10 \
   --scsihw virtio-scsi-pci \
   --onboot 1 \
   --startup order=99,up=90
@@ -164,7 +164,7 @@ qm create 9003 \
   --cpu host \
   --ostype l26 \
   --bios seabios \
-  --net0 virtio=BC:24:11:03:0A:0B,bridge=vmbr0,tag=10 \
+  --net0 virtio=BC:24:11:03:0A:0B,bridge=vmbr0,queues=8,tag=10 \
   --scsihw virtio-scsi-pci \
   --onboot 1 \
   --startup order=99,up=90
